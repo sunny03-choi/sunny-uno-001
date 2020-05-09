@@ -73,11 +73,12 @@ void loop() {
   
  }
  if 
-  (soil >= 618)
+  (soil >= 618){
   digitalWrite(red, HIGH);
    
   delay(200);
   digitalWrite(red,LOW);
+ }
  
   
   
