@@ -1,4 +1,6 @@
 
+#include <LiquidCrystal.h>
+
 #define A0Pin 0
 #include<LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd (0x27,16,2);
@@ -29,17 +31,18 @@ void setup() {
 void loop() {
   
   int soil = analogRead(A0);
-  
+  lcd.init();
+  lcd.backlight();
   Serial.print("read soil : ");
   Serial.println(soil);
   lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("Dry-----------Wet");
   lcd.print("read soil : ");
   lcd.println(soil);
   if (soil >430) {
     Serial.println ("vary dry");
     Serial.println ("Pumping 1 second");
+    lcd.setCursor(0,1);
     lcd.println(" dry Pumping");
     digitalWrite(pump,HIGH);
     delay(1000);
