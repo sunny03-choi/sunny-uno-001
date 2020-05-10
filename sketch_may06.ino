@@ -1,3 +1,5 @@
+
+
 #define A0Pin 0
 #include<LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd (0x27,16,2);
@@ -16,8 +18,6 @@ void setup() {
  Serial.begin(9600);
  
   pinMode (pump,OUTPUT);
-  
-  
   pinMode (red, OUTPUT);
   pinMode (yellow, OUTPUT);
   pinMode (green, OUTPUT); 
@@ -31,39 +31,40 @@ void loop() {
   lcd.backlight();
   Serial.print("read soil : ");
   Serial.println(soil);
+  delay(700);
   lcd.begin(16,2);
   lcd.clear();
   lcd.home();
   lcd.print("read soil : ");
   lcd.println(soil);
-  delay(700);
+  delay(800);
   if (soil >618) {
     Serial.println ("vary dry");
     Serial.println ("Pumping 1 second");
     lcd.noDisplay();
-    delay(800);
+    delay(900);
     lcd.display();
     lcd.setCursor(0,1);
     lcd.println(" dry Pumping");
-    delay(900);
-    digitalWrite(pump,HIGH);
     delay(1000);
+    digitalWrite(pump,HIGH);
+    delay(100);
     digitalWrite(pump,LOW);
   }
   else {
     Serial.println(" vary wet");
     lcd. setCursor(0,1);
     lcd.print(" Wet");
-    delay(100);
+    delay(200);
     digitalWrite(pump, LOW);
   }
  if (soil <400) {
  digitalWrite(green, HIGH);
- delay(500);
+ delay(300);
  digitalWrite(green,LOW);
- delay(600);
+ delay(400);
  digitalWrite(green,HIGH);
- delay(700);
+ delay(500);
  digitalWrite(green, HIGH);
  }
  else {
@@ -76,13 +77,8 @@ void loop() {
   (soil >= 618){
   digitalWrite(red, HIGH);
    
-  delay(200);
+  delay(600);
   digitalWrite(red,LOW);
- }
- 
-  
-  
- 
- 
-  delay(300);
+  }
+   delay(700);
 }
