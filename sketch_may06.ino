@@ -31,40 +31,40 @@ void loop() {
   lcd.backlight();
   Serial.print("read soil : ");
   Serial.println(soil);
-  delay(700);
+  delay(900);
   lcd.begin(16,2);
   lcd.clear();
   lcd.home();
   lcd.print("read soil : ");
   lcd.println(soil);
-  delay(800);
+  
   if (soil >618) {
     Serial.println ("vary dry");
     Serial.println ("Pumping 1 second");
     lcd.noDisplay();
-    delay(900);
+    delay(1100);
     lcd.display();
     lcd.setCursor(0,1);
     lcd.println(" dry Pumping");
-    delay(1000);
-    digitalWrite(pump,HIGH);
     delay(100);
+    digitalWrite(pump,HIGH);
+    delay(200);
     digitalWrite(pump,LOW);
   }
   else {
     Serial.println(" vary wet");
     lcd. setCursor(0,1);
     lcd.print(" Wet");
-    delay(200);
+    delay(300);
     digitalWrite(pump, LOW);
   }
- if (soil <400) {
+ if (soil <470) {
  digitalWrite(green, HIGH);
- delay(300);
- digitalWrite(green,LOW);
  delay(400);
- digitalWrite(green,HIGH);
+ digitalWrite(green,LOW);
  delay(500);
+ digitalWrite(green,HIGH);
+ delay(600);
  digitalWrite(green, HIGH);
  }
  else {
@@ -77,8 +77,8 @@ void loop() {
   (soil >= 618){
   digitalWrite(red, HIGH);
    
-  delay(600);
+  delay(700);
   digitalWrite(red,LOW);
   }
-   delay(700);
+   delay(800);
 }
