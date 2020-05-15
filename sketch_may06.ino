@@ -1,4 +1,3 @@
-
 #define A0Pin 0
 #include<LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd (0x27,16,2);
@@ -20,7 +19,12 @@ void setup() {
   pinMode (red, OUTPUT);
   pinMode (yellow, OUTPUT);
   pinMode (green, OUTPUT); 
+  
+
+
 }
+
+
  
 
 void loop() {
@@ -36,8 +40,24 @@ void loop() {
   lcd.home();                   //lcd (0.0)에 맞춤   
   lcd.print("read soil : ");    //lcd "read soil"이라고 씀  
   lcd.println(soil);           //lcd soil 값 출력
-  delay(1000);
   
+  
+ 
+ 
+  if (soil <400) {
+   
+ Serial.println("enough water");
+ lcd.setCursor(0,1);
+ lcd.println("enough");
+ digitalWrite(green, HIGH);
+ delay(4000);
+ digitalWrite(green,LOW);
+ 
+ }
+   
+  
+ 
+
   
   if (soil >618) {
     Serial.println ("vary dry");
@@ -46,40 +66,27 @@ void loop() {
     delay(1100);
     lcd.display();
     lcd.setCursor(0,1);
-    lcd.println(" dry Pumping");
+    lcd.println(" dry,Pumping");
     delay(100);
+    
+   
+  digitalWrite(red,HIGH);
+ 
     digitalWrite(pump,HIGH);
-    delay(200);
+    delay(3000);
     digitalWrite(pump,LOW);
+   digitalWrite(red,LOW);
   }
-  else {
+  if (400<soil<618) {
     Serial.println(" vary wet");   
     lcd. setCursor(0,1);          //lcd 에 0,1에 글씨출력  
-    lcd.print(" Wet");            //lcd 에 wet 라고 출력   
+    lcd.print("Wet");            //lcd 에 wet 라고 출력   
     delay(300);                   
-    digitalWrite(pump, LOW);      //pump를 끔
-  }
- if (soil <470) {
- digitalWrite(green, HIGH);
- delay(400);
- digitalWrite(green,LOW);
- delay(500);
- digitalWrite(green,HIGH);
- delay(600);
- digitalWrite(green, HIGH);
- }
- else {
-  digitalWrite(green,LOW);         //green led 끔   
+             
   digitalWrite(yellow, HIGH);      //yellow led 켬   
-  digitalWrite(red, LOW);          //red led 끔    
-  
- }
- if 
-  (soil >= 618){
-  digitalWrite(red, HIGH);
-   
-  delay(700);
-  digitalWrite(red,LOW);
+    
+  delay(5000);
+  digitalWrite(yellow,LOW);
   }
-   delay(800);
+delay(100);
 }
