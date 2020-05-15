@@ -1,3 +1,5 @@
+
+
 #define A0Pin 0
 #include<LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd (0x27,16,2);
@@ -52,14 +54,8 @@ void loop() {
  digitalWrite(green, HIGH);
  delay(4000);
  digitalWrite(green,LOW);
- 
  }
-   
-  
- 
-
-  
-  if (soil >618) {
+   if (soil >618) {
     Serial.println ("vary dry");
     Serial.println ("Pumping 1 second");
     lcd.noDisplay();
@@ -77,16 +73,11 @@ void loop() {
     digitalWrite(pump,LOW);
    digitalWrite(red,LOW);
   }
-  if (400<soil<618) {
+  if (401< soil <617) {
     Serial.println(" vary wet");   
-    lcd. setCursor(0,1);          //lcd 에 0,1에 글씨출력  
-    lcd.print("Wet");            //lcd 에 wet 라고 출력   
-    delay(300);                   
-             
-  digitalWrite(yellow, HIGH);      //yellow led 켬   
-    
-  delay(5000);
-  digitalWrite(yellow,LOW);
+    digitalWrite(yellow,HIGH);
+    delay(300);
+    digitalWrite(yellow,LOW);
   }
 delay(100);
 }
