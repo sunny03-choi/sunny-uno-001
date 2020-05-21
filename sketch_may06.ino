@@ -34,11 +34,11 @@ void loop() {
   lcd.backlight();               //lcd backlight 켬   
   Serial.print("read soil : ");
   Serial.println(soil);
-  delay(1700);
+  delay(700);
   lcd.begin(16,2);               //lcd 시작   
   lcd.clear();                  //lcd 초기화
   lcd.home();                   //lcd (0.0)에 맞춤   
-  lcd.print("read soil : ");    //lcd "read soil"이라고 씀  
+  lcd.print("read soil is : ");    //lcd "read soil"이라고 씀  
   lcd.println(soil);           //lcd soil 값 출력
   
   
@@ -50,7 +50,7 @@ void loop() {
  lcd.setCursor(0,1);
  lcd.println("enough");
  digitalWrite(green, HIGH);
- delay(100);
+ delay(1000);
  digitalWrite(green,LOW);
  }
  if (soil >400) {
@@ -58,29 +58,31 @@ void loop() {
  }
  if (soil <575) {
   Serial.println(" not enough");
- digitalWrite(yellow,HIGH);
-  delay(6000);
-  digitalWrite(yellow,LOW);
+ digitalWrite(yellow,LOW);
+  delay(600);
+  digitalWrite(yellow,HIGH);
  }
- if (soil >575) {
+ 
+ 
+   if (soil >575) {
     Serial.println ("vary dry");
     Serial.println ("Pumping 1 second");
     lcd.noDisplay();
-    delay(190);
+    delay(1900);
     lcd.display();
     lcd.setCursor(0,1);
     lcd.println(" dry,Pumping");
-    delay(900);
+    delay(20);
     
    
   digitalWrite(red,HIGH);
  
     digitalWrite(pump,HIGH);
-    delay(2000);
+    delay(3000);
     digitalWrite(pump,LOW);
    digitalWrite(red,LOW);
    
   }
   
-delay(900);
+delay(90);
 }
