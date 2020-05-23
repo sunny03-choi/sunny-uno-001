@@ -1,3 +1,4 @@
+
 #define A0Pin 0
 #include<LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd (0x27,16,2);
@@ -38,7 +39,7 @@ void loop() {
   lcd.begin(16,2);               //lcd 시작   
   lcd.clear();                  //lcd 초기화
   lcd.home();                   //lcd (0.0)에 맞춤   
-  lcd.print("read soil is : ");    //lcd "read soil"이라고 씀  
+  lcd.print("read soil : ");    //lcd "read soil"이라고 씀  
   lcd.println(soil);           //lcd soil 값 출력
   
   
@@ -78,7 +79,7 @@ void loop() {
   digitalWrite(red,HIGH);
  
     digitalWrite(pump,HIGH);
-    delay(3000);
+    delay(5000);
     digitalWrite(pump,LOW);
    digitalWrite(red,LOW);
    
