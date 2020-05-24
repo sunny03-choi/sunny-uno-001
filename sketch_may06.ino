@@ -1,4 +1,3 @@
-
 #define A0Pin 0
 #include<LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd (0x27,16,2);
@@ -14,24 +13,18 @@ int pump =8;
 
 void setup() {
   
- Serial.begin(9600);
+ Serial.begin(9600);   
  
-  pinMode (pump,OUTPUT);      
-  pinMode (red, OUTPUT);
-  pinMode (yellow, OUTPUT);
-  pinMode (green, OUTPUT); 
-  
-
-
+  pinMode (pump,OUTPUT);       //펌프 출력      
+  pinMode (red, OUTPUT);       //led 빨간색 출력
+  pinMode (yellow, OUTPUT);   //led 노란색 출력
+  pinMode (green, OUTPUT);    //led 초록색 출력
 }
-
-
- 
 
 void loop() {
   
-  int soil = analogRead(A0);     //토양 값을 A0 출력
-  lcd.init();                    //lcd 시작
+  int soil = analogRead(A0);     
+  lcd.init();                    
   lcd.backlight();               //lcd backlight 켬   
   Serial.print("read soil : ");
   Serial.println(soil);
@@ -47,39 +40,37 @@ void loop() {
  
   if (soil <400) {
    
- Serial.println("enough water");
- lcd.setCursor(0,1);
- lcd.println("enough");
- digitalWrite(green, HIGH);
- delay(3000);
- digitalWrite(green,LOW);
+ Serial.println("enough water");          
+ lcd.setCursor(0,1);                  //lcd 초점 (0,1)에 맞추기
+ lcd.println("enough");              //lcd 에 "enough"라고 쓰기
+ digitalWrite(green, HIGH);           //led 초록색 켜기
+ delay(3000);                        //3초 동안 켜기
+ digitalWrite(green,LOW);            //led 초록색 끄기  
  }
 
-else  if (400< soil && soil <575) {
-  Serial.println(" not enough");
- digitalWrite(yellow,HIGH);
-  delay(600);
-  digitalWrite(yellow,LOW);
+else  if (400< soil && soil <575) {      //흙의 수분이 400 초과 575 미만일 때
+  Serial.println(" not enough");        
+ digitalWrite(yellow,HIGH);             //노란색 led 켜짐 
+  delay(600);                           //0.6초 동안 켜기     
+  digitalWrite(yellow,LOW);            //노란색 led 켜기
+ 
  }
  
  
    else {
-    Serial.println ("vary dry");
+    Serial.println ("vary dry");          
     Serial.println ("Pumping 1 second");
-    lcd.noDisplay();
-    delay(1900);
-    lcd.display();
-    lcd.setCursor(0,1);
-    lcd.println(" dry,Pumping");
-    delay(200);
-    
-   
-  digitalWrite(red,HIGH);
+    lcd.noDisplay();                    //lcd에 보여주지 않기
+    delay(1900);                        //1.9초 동안 쉬기
+    lcd.display();                      //lcd 보여주기
+    lcd.setCursor(0,1);                 //(0,1)에 초점 맞추기
+    lcd.println(" dry,Pumping");       //lcd에 dry,pumping 이라고 쓰기
+    digitalWrite(red,HIGH);              // 빨간색 led 켜기
  
-    digitalWrite(pump,HIGH);
-    delay(5000);
-    digitalWrite(pump,LOW);
-   digitalWrite(red,LOW);
+    digitalWrite(pump,HIGH);            //펌프 켜기
+    delay(5000);                        //5초 동안 켜기    
+    digitalWrite(pump,LOW);            //펌프 끄기
+   digitalWrite(red,LOW);              //빨간색 led 끄기
    
   }
   
