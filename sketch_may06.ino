@@ -1,3 +1,4 @@
+
 #define A0Pin 0
 #include<LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd (0x27,16,2);
@@ -52,8 +53,13 @@ else  if (400< soil && soil <575) {      //흙의 수분이 400 초과 575 미�
   Serial.println(" not enough");        
  digitalWrite(yellow,HIGH);             //노란색 led 켜짐 
   delay(600);                           //0.6초 동안 켜기     
-  digitalWrite(yellow,LOW);            //노란색 led 켜기
- 
+  digitalWrite(yellow,LOW);//노란색 led 켜기
+  lcd.noDisplay();
+  delay(3000);
+  lcd.display();
+  delay(1000);
+  lcd.setCursor(0,1);
+ lcd.println("Usual");
  }
  
  
@@ -63,6 +69,7 @@ else  if (400< soil && soil <575) {      //흙의 수분이 400 초과 575 미�
     lcd.noDisplay();                    //lcd에 보여주지 않기
     delay(1900);                        //1.9초 동안 쉬기
     lcd.display();                      //lcd 보여주기
+    delay(1000);
     lcd.setCursor(0,1);                 //(0,1)에 초점 맞추기
     lcd.println(" dry,Pumping");       //lcd에 dry,pumping 이라고 쓰기
     digitalWrite(red,HIGH);              // 빨간색 led 켜기
@@ -73,5 +80,5 @@ else  if (400< soil && soil <575) {      //흙의 수분이 400 초과 575 미�
    digitalWrite(red,LOW);              //빨간색 led 끄기
    
   }
-  
+ delay(400); 
 }
