@@ -51,7 +51,7 @@ void loop() {
  lcd.setCursor(0,1);
  lcd.println("enough");
  digitalWrite(green, HIGH);
- delay(1000);
+ delay(3000);
  digitalWrite(green,LOW);
  }
  if (soil >400) {
@@ -73,7 +73,7 @@ void loop() {
     lcd.display();
     lcd.setCursor(0,1);
     lcd.println(" dry,Pumping");
-    delay(20);
+    delay(200);
     
    
   digitalWrite(red,HIGH);
@@ -85,5 +85,5 @@ void loop() {
    
   }
   
-delay(90);
+delay(60);
 }
