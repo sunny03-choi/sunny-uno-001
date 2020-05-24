@@ -54,18 +54,16 @@ void loop() {
  delay(3000);
  digitalWrite(green,LOW);
  }
- if (soil >400) {
 
- }
- if (soil <575) {
+else  if (400< soil && soil <575) {
   Serial.println(" not enough");
- digitalWrite(yellow,LOW);
+ digitalWrite(yellow,HIGH);
   delay(600);
-  digitalWrite(yellow,HIGH);
+  digitalWrite(yellow,LOW);
  }
  
  
-   if (soil >575) {
+   else {
     Serial.println ("vary dry");
     Serial.println ("Pumping 1 second");
     lcd.noDisplay();
@@ -85,5 +83,4 @@ void loop() {
    
   }
   
-delay(60);
 }
