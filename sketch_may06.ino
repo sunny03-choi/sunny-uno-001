@@ -1,3 +1,4 @@
+//20921최선우 제작
 //꼭 선이 잘 끼워저 있는지 확인하고 작동시켜주세요!!!
 #define A0Pin 0
 #include<LiquidCrystal_I2C.h>
